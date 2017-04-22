@@ -1,0 +1,12 @@
+---
+
+- hosts: webserver
+  serial: 1
+
+  tasks:
+  - name: take out of load balancer pool
+    command: touch {{ inventory_hostname }}
+    delegate_to: 127.0.0.1
+
+  - name: pulling code
+    git: repo=https://github.com/training-devops/ansible-workshop.git dest=/tmp/ansible-workshop
